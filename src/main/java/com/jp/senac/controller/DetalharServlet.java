@@ -18,7 +18,7 @@ public class DetalharServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String nome = request.getParameter("nome");
+		Integer id = Integer.parseInt(request.getParameter("id"));
 
 		//Pegando a lista da sessão
 		HttpSession session = request.getSession();		
@@ -28,7 +28,7 @@ public class DetalharServlet extends HttpServlet {
 		//Recuperando o aluno da lista com o nome Selecionado anteriormente
 		Aluno aluno = null;
 		for (Aluno a : listaAlunos) {
-			if (a.getNome().toString().equals(nome)) {
+			if (a.getId() == id) {
 				aluno = a;
 			}
 		}

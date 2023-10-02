@@ -6,16 +6,20 @@ public class Aluno {
 	private String idade;
 	private String semestre;
 	private String genero;
+	private int id;
+	private String matricula;
 	
 	public Aluno() {
 		
 	}
 	
-	public Aluno(String nome, String idade, String semestre, String genero) {
+	public Aluno(String nome, String idade, String semestre, String genero, int id, String matricula) {
 		this.nome = nome;
 		this.idade = idade;
 		this.semestre = semestre;
 		this.genero = genero;
+		this.id = id;
+		this.matricula = matricula;
 	}
 
 	public String getNome() {
@@ -50,6 +54,21 @@ public class Aluno {
 		this.genero = genero;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
 	
 	
 	

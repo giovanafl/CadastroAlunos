@@ -19,7 +19,7 @@ public class AlterarServlet extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String nome = request.getParameter("nome");
+		Integer id = Integer.parseInt(request.getParameter("id"));
 		
 		// Recuperar a minha sessão
 		HttpSession session = request.getSession();
@@ -29,7 +29,7 @@ public class AlterarServlet extends HttpServlet {
 		// Recuperando o aluno que tem o nome informado (e que deve ser alterado)
 		Aluno aluno = null;
 		for (Aluno a : listaAlunos) {
-			if (a.getNome().toString().equals(nome)) {
+			if (a.getId() == id) {
 				aluno = a;
 			}
 		}

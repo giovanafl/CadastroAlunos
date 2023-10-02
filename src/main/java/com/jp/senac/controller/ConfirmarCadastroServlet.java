@@ -1,8 +1,10 @@
 package com.jp.senac.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.jp.senac.model.Aluno;
 
@@ -34,8 +36,27 @@ public class ConfirmarCadastroServlet extends HttpServlet {
 			listaAlunos = new ArrayList<>(); // Criando a lista
 		}
 		
+		int maior = 0;
+		for (Aluno aluno : listaAlunos) {
+			if (aluno.getId() > maior) {
+				maior = aluno.getId();				
+			}
+		}
+		
+		String matricula = "";
+		Random random = new Random();
+		LocalDate dataAtual = LocalDate.now();
+		int mes = dataAtual.getMonthValue();
+		int ano = dataAtual.getYear();
+		int semestre1 = (mes <7) ? 1:2;
+		
+		matricula = String.valueOf(ano) + String.valueOf(mes) + "0" + String.valueOf(semestre1) + idade;
+		for (int i = 0; i < 4; i++) {
+			matricula += random.nextInt(10);
+		}
+		
 		// Guardar no objeto aluno
-		Aluno aluno = new Aluno(nome, idade, semestre, genero);
+		Aluno aluno = new Aluno(nome, idade, semestre, genero, maior+1, matricula);
 		
 		// Adicionando aluno na lista (INSERT)
 		listaAlunos.add(aluno);
@@ -45,12 +66,6 @@ public class ConfirmarCadastroServlet extends HttpServlet {
 		
 		// Encaminhar a requisição para o JSP
 		request.getRequestDispatcher("detalharAluno.jsp").forward(request, response);
-		
-		
-		
-		
-		
-		
 		
 	}
 

@@ -16,6 +16,12 @@
 Nome: <%=aluno.getNome()%>
 <br><br>
 
+Id: <%=aluno.getId()%>
+<br><br>
+
+Matrícula: <%=aluno.getMatricula()%>
+<br><br>
+
 Idade: <%=aluno.getIdade()%>
 <br><br>
 
@@ -26,7 +32,7 @@ Semestre: <%=aluno.getSemestre()%>
 <br><br>
 
 <input type="button" onclick="javascript:location.href='listarAlunos.jsp'"  value="Confirmar"> 
-<a href="AlterarServlet?nome=<%=aluno.getNome()%>">Alterar</a>
+<a href="AlterarServlet?id=<%=aluno.getId()%>">Alterar</a>
 
 
 </body>

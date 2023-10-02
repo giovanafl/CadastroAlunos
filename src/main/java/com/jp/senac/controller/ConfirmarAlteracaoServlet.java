@@ -21,17 +21,18 @@ public class ConfirmarAlteracaoServlet extends HttpServlet {
 		String genero = request.getParameter("genero");
 		String semestre = request.getParameter("semestre");
 		String nomeAntigo = request.getParameter("nomeAntigo");
-
+		Integer id = Integer.parseInt(request.getParameter("id"));
 
 		HttpSession session = request.getSession();
 		List<Aluno> listaAlunos = (List<Aluno>) session.getAttribute("listaAlunos");
 
 		for (Aluno aluno : listaAlunos) {
-			if (aluno.getNome().toString().equals(nomeAntigo)) {
+			if (aluno.getId() == id) {
 				aluno.setNome(nome);
 				aluno.setIdade(idade);
 				aluno.setSemestre(semestre);
 				aluno.setGenero(genero);
+				aluno.setId(id);
 			}
 		}
 

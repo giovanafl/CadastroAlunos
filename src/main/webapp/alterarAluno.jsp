@@ -16,7 +16,7 @@
 
 <form action="ConfirmarAlteracaoServlet" method="post">
 
-<input type="hidden" name="nomeAntigo" value="<%=aluno.getNome() %>">
+<input type="hidden" name="id" value="<%=aluno.getId() %>">
 
 Nome:
 <input type="text" name="nome" value="<%=aluno.getNome() %>">
@@ -32,7 +32,6 @@ Semestre:
 	<option value="Segundo" <%=aluno.getSemestre().equals("Segundo")  ? "selected"  :  ""%>>Segundo</option>   
 </select>
 <br><br>
-
 
 Genero:
 
