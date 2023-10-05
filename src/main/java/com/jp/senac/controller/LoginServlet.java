@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if(usuario.equals("admin")  && senha.equals("admin")) {
 			HttpSession session = request.getSession();
-			session.setMaxInactiveInterval(300); //após 5 min ele vai expirar a sessão
+			session.setMaxInactiveInterval(10); //após 5 min ele vai expirar a sessão
 			session.setAttribute("usuario", usuario);
 			request.getRequestDispatcher("listarAlunos.jsp").forward(request, response);
 		} else {

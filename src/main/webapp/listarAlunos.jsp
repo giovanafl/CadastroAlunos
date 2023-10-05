@@ -9,7 +9,12 @@
 </head>
 <body>
 
-<% String usuario = (String) session.getAttribute("usuario");
+<%
+	String usuario = (String) session.getAttribute("usuario");
+
+	if (usuario == null ) {
+		response.sendRedirect("index.jsp");
+	}	
 	out.print("Bem vindo, "+usuario+"<br>");
 %>
 

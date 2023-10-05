@@ -8,6 +8,13 @@
 </head>
 <body>
 
+<%
+	String usuario = (String) session.getAttribute("usuario");
+
+	if (usuario == null ) {
+		response.sendRedirect("index.jsp");
+	}	
+%>	
 <h1> Cadastro Aluno</h1>
 
 <form action="ConfirmarCadastroServlet"  method="post">
@@ -32,8 +39,6 @@
 	<input type="submit" value="Confirmar Cadastro">
 	<a href="listarAlunos.jsp">Voltar</a>
 </form>
-
-
 
 
 </body>

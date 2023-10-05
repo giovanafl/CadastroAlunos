@@ -8,7 +8,13 @@
 <title>Informações do Aluno</title>
 </head>
 <body>
+<%
+	String usuario = (String) session.getAttribute("usuario");
 
+	if (usuario == null ) {
+		response.sendRedirect("index.jsp");
+	}	
+%>	
 <% Aluno aluno = (Aluno) request.getAttribute("aluno");%>
 
 <h2> Aluno Cadastrado</h2>

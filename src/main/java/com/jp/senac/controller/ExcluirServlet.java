@@ -17,13 +17,13 @@ public class ExcluirServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String nome = request.getParameter("nome");		
+		Integer id = Integer.parseInt(request.getParameter("id"));	
 		HttpSession session = request.getSession();
 		List<Aluno> listaAlunos = (List<Aluno>) session.getAttribute("listaAlunos");
 
 		Aluno aluno = null;
 		for (Aluno a : listaAlunos) {
-			if (a.getNome().toString().equals(nome)) {
+			if (a.getId() == id ) {
 				aluno = a;
 			}
 		}
