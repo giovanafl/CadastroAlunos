@@ -56,7 +56,7 @@ public class ConfirmarCadastroServlet extends HttpServlet {
 		}
 		
 		// Guardar no objeto aluno
-		Aluno aluno = new Aluno(nome, idade, semestre, genero, maior+1, matricula);
+		Aluno aluno = new Aluno(maior+1, idade, semestre, genero, nome, matricula);
 		
 		// Adicionando aluno na lista (INSERT)
 		listaAlunos.add(aluno);

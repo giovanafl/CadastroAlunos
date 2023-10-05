@@ -20,7 +20,7 @@
 
 Clique <a href="cadastrarAluno.jsp">aqui</a> para cadastrar um novo aluno
 
-<%List<Aluno> listaAlunos = (List<Aluno>) session.getAttribute("listaAlunos");  %>
+<%List<Aluno> listaAlunos = (List<Aluno>) request.getAttribute("listaAlunos");  %>
 
 <% if (listaAlunos == null) { %>
 		<h3>Nenhum aluno cadastrado</h3>

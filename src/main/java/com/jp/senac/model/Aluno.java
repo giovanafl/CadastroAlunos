@@ -2,23 +2,31 @@ package com.jp.senac.model;
 
 public class Aluno {
 	
+	private int id;
 	private String nome;
 	private String idade;
 	private String semestre;
 	private String genero;
-	private int id;
 	private String matricula;
 	
 	public Aluno() {
 		
 	}
 	
-	public Aluno(String nome, String idade, String semestre, String genero, int id, String matricula) {
+	public Aluno(int id, String nome, String idade, String semestre, String genero, String matricula) {
+		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
 		this.semestre = semestre;
 		this.genero = genero;
-		this.id = id;
+		this.matricula = matricula;
+	}
+	
+	public Aluno(String nome, String idade, String semestre, String genero, String matricula) {
+		this.nome = nome;
+		this.idade = idade;
+		this.semestre = semestre;
+		this.genero = genero;
 		this.matricula = matricula;
 	}
 
