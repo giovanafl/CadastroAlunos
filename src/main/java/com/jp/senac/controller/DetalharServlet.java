@@ -3,6 +3,7 @@ package com.jp.senac.controller;
 import java.io.IOException;
 import java.util.List;
 
+import com.jp.senac.dao.AlunoJDBCdao;
 import com.jp.senac.model.Aluno;
 
 import jakarta.servlet.ServletException;
@@ -19,22 +20,12 @@ public class DetalharServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Integer id = Integer.parseInt(request.getParameter("id"));
+		
+		AlunoJDBCdao dao = new AlunoJDBCdao();
+		Aluno aluno = dao.pesquisarPorID(id); // instancia o aluno
 
-		//Pegando a lista da sessão
-		HttpSession session = request.getSession();		
-		List<Aluno> listaAlunos = (List<Aluno>) session.getAttribute("listaAlunos");
-
-
-		//Recuperando o aluno da lista com o nome Selecionado anteriormente
-		Aluno aluno = null;
-		for (Aluno a : listaAlunos) {
-			if (a.getId() == id) {
-				aluno = a;
-			}
-		}
-
-		request.setAttribute("aluno", aluno);
-		request.getRequestDispatcher("detalharAluno.jsp").forward(request, response);
+		request.setAttribute("aluno", aluno); //Envia o aluno
+		request.getRequestDispatcher("detalharAluno.jsp").forward(request, response); //Redireciona o Aluno para DetalharAluno
 
 	}
 

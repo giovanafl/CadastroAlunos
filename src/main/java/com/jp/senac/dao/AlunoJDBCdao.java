@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,8 @@ public class AlunoJDBCdao {
 
 		return con;
 	}
-
+	
+	//Feito
 	public List<Aluno> listarAlunos () throws SQLException {
 
 		List<Aluno> alunos = new ArrayList<>();
@@ -64,6 +66,106 @@ public class AlunoJDBCdao {
 		}
 
 		return alunos;
+	}
+	
+	//Feito
+	public Aluno pesquisarPorID(Integer id) {
+        String query = "Select * from alunos where id =?";
+        Aluno aluno = null;
+		try {
+			Connection con = getConexao();
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setInt(1, id);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				String nome = rs.getString(2);
+				String idade = rs.getString(3);
+				String semestre = rs.getString(4);
+				String genero = rs.getString(5);
+				String matricula = rs.getString(6);
+				aluno = new Aluno (id,nome,idade,semestre,genero,matricula);
+			}
+			
+			pst.close();
+			con.close();
+			return aluno;
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+	}
+		return null;
+		}
+	
+	//Feito
+	public void excluirAluno(Integer id) {
+		String query = "delete from alunos where id =?";
+		try {
+			Connection con = getConexao();
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setInt(1, id);
+			
+			pst.executeUpdate();
+			pst.close();
+			con.close();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	
+	}
+	
+	public void alterarAluno(Aluno aluno) {
+		String query = "update alunos set nome =?,idade=?,semestre=?,genero=?,matricula=? where id =?";
+		try {
+			Connection con = getConexao();
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setString(1, aluno.getNome());
+			pst.setString(2, aluno.getIdade());
+			pst.setString(3, aluno.getSemestre());
+			pst.setString(4, aluno.getGenero());
+			pst.setString(5, aluno.getMatricula());
+			pst.setInt(6, aluno.getId());
+			pst.executeUpdate();
+			pst.close();
+			con.close();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//Feito
+	public Aluno cadastrarAluno(Aluno aluno) {
+		String query = "insert into alunos (nome, idade, semestre,genero,matricula) values (?,?,?,?,?)";
+		try {
+			Connection con = getConexao();
+			PreparedStatement pst = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+			pst.setString(1, aluno.getNome());
+			pst.setString(2, aluno.getIdade());
+			pst.setString(3, aluno.getSemestre());
+			pst.setString(4, aluno.getGenero());
+			pst.setString(5, aluno.getMatricula());
+			pst.executeUpdate();
+			
+			// Criando a ação para pegar o ID
+			ResultSet rs = pst.getGeneratedKeys();
+			while (rs.next()) {
+				int chaveGerada = rs.getInt(1); //ID na posição 1 do banco de dados
+				System.out.println("ID Gerado foi " + chaveGerada);
+				aluno.setId(chaveGerada);
+			}
+
+			pst.close();
+			con.close();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return aluno;
+	}
+	
+	public List<Aluno> pesquisa(String valor, String operacao) {
+		String query = "Select * from alunos where nome like %?%";
+		String query2 = "Select * from alunos where matricula like %?%";
+		return null;
+		
 	}
 
 }

@@ -79,4 +79,24 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListarServlet</display-name>
+    <servlet-name>ListarServlet</servlet-name>
+    <servlet-class>com.jp.senac.controller.ListarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListarServlet</servlet-name>
+    <url-pattern>/ListarServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RecuperarServlet</display-name>
+    <servlet-name>RecuperarServlet</servlet-name>
+    <servlet-class>com.jp.senac.controller.RecuperarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecuperarServlet</servlet-name>
+    <url-pattern>/RecuperarServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

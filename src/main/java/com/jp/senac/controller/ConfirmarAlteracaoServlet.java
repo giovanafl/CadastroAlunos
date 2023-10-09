@@ -3,6 +3,7 @@ package com.jp.senac.controller;
 import java.io.IOException;
 import java.util.List;
 
+import com.jp.senac.dao.AlunoJDBCdao;
 import com.jp.senac.model.Aluno;
 
 import jakarta.servlet.ServletException;
@@ -20,24 +21,13 @@ public class ConfirmarAlteracaoServlet extends HttpServlet {
 		String idade = request.getParameter("idade");
 		String genero = request.getParameter("genero");
 		String semestre = request.getParameter("semestre");
-		String nomeAntigo = request.getParameter("nomeAntigo");
 		Integer id = Integer.parseInt(request.getParameter("id"));
+		String matricula = request.getParameter("matricula");
 
-		HttpSession session = request.getSession();
-		List<Aluno> listaAlunos = (List<Aluno>) session.getAttribute("listaAlunos");
+		AlunoJDBCdao dao = new AlunoJDBCdao();
+		dao.alterarAluno(new Aluno (id,nome,idade, semestre, genero,matricula));
 
-		for (Aluno aluno : listaAlunos) {
-			if (aluno.getId() == id) {
-				aluno.setNome(nome);
-				aluno.setIdade(idade);
-				aluno.setSemestre(semestre);
-				aluno.setGenero(genero);
-				aluno.setId(id);
-			}
-		}
-
-		session.setAttribute("listaAlunos", listaAlunos);
-		request.getRequestDispatcher("listarAlunos.jsp").forward(request, response);
+		request.getRequestDispatcher("ListarServlet").forward(request, response);
 
 	}
 

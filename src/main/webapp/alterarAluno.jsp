@@ -24,6 +24,7 @@
 <form action="ConfirmarAlteracaoServlet" method="post">
 
 <input type="hidden" name="id" value="<%=aluno.getId() %>">
+<input type="hidden" name="matricula" value="<%=aluno.getMatricula() %>">
 
 Nome:
 <input type="text" name="nome" value="<%=aluno.getNome() %>">
