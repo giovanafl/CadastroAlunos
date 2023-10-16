@@ -22,7 +22,9 @@ public class PesquisarServlet extends HttpServlet {
 				AlunoJDBCdao dao = new AlunoJDBCdao();
 				
 				try {
-					List<Aluno> listaAlunos = dao.pesquisarPor(opcao, pesquisa);
+					List<Aluno> listaAlunos = dao.pesquisarPor(pesquisa, opcao);
+
+					
 					
 					System.out.println(listaAlunos);
 					

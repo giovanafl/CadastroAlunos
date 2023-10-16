@@ -165,16 +165,16 @@ public class AlunoJDBCdao {
 	
 	/*
 	 * Método para pesquisar o aluno por Matrícula ou Nome
-	 * String valor representa (aqui) o que a pessoa "selecionou"
-	 * String opcao representa no método o que foi Digitado no campo de Texto
+	 * String valor representa (aqui) o que foi digitado na caixa de texto
+	 * String opcao representa no método a opção de Pesquisa (Nome ou Matrícula)
 	 */
 	public List<Aluno> pesquisarPor(String valor, String opcao) {
 		System.out.println(valor);
 		System.out.println(opcao);
 		System.out.println("Entrei na Pesquisa");
 		List<Aluno> alunos = new ArrayList<>();
-		if(valor.equals("matricula")) {
-			String query = "Select * from alunos WHERE matricula = "+ opcao ; //SQL para pesquisa no DB
+		if(opcao.equals("matricula")) {
+			String query = "Select * from alunos WHERE matricula = "+ valor ; //SQL para pesquisa no DB
 			System.out.println("Entrei if da Matricula/Pesquisa");
 			try {
 				System.out.println("Entrei no try da Matricula/Pesquisa");
@@ -197,9 +197,9 @@ public class AlunoJDBCdao {
 				e.printStackTrace();
 			}
 		}
-		else if(valor.equals("nome")) {
+		else if(opcao.equals("nome")) {
 			System.out.println("Entrei no if do Nome/Pesquisa");
-			String query = "Select * from alunos WHERE nome LIKE '%"  +opcao+"%'";
+			String query = "Select * from alunos WHERE nome LIKE '%"  +valor+"%'";
 			try {
 				System.out.println("Entrei no try do Nome/Pesquisa");
 				Connection con = getConexao();
