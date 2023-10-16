@@ -161,10 +161,68 @@ public class AlunoJDBCdao {
 		return aluno;
 	}
 	
-	public List<Aluno> pesquisa(String valor, String operacao) {
-		String query = "Select * from alunos where nome like %?%";
-		String query2 = "Select * from alunos where matricula like %?%";
-		return null;
+	//Feito
+	
+	/*
+	 * Método para pesquisar o aluno por Matrícula ou Nome
+	 * String valor representa (aqui) o que a pessoa "selecionou"
+	 * String opcao representa no método o que foi Digitado no campo de Texto
+	 */
+	public List<Aluno> pesquisarPor(String valor, String opcao) {
+		System.out.println(valor);
+		System.out.println(opcao);
+		System.out.println("Entrei na Pesquisa");
+		List<Aluno> alunos = new ArrayList<>();
+		if(valor.equals("matricula")) {
+			String query = "Select * from alunos WHERE matricula = "+ opcao ; //SQL para pesquisa no DB
+			System.out.println("Entrei if da Matricula/Pesquisa");
+			try {
+				System.out.println("Entrei no try da Matricula/Pesquisa");
+				Connection con = getConexao();
+				PreparedStatement pst = con.prepareStatement(query);
+				ResultSet rs = pst.executeQuery();
+				while(rs.next()) {
+					int id = rs.getInt(1);
+					String nome = rs.getString(2);
+					String idade = rs.getString(3);
+					String genero = rs.getString(4);
+					String matricula = rs.getString(5);
+					String semestre = rs.getString(6);
+					alunos.add(new Aluno(id, idade, semestre, genero, nome, matricula));
+				}
+				rs.close();
+				pst.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(valor.equals("nome")) {
+			System.out.println("Entrei no if do Nome/Pesquisa");
+			String query = "Select * from alunos WHERE nome LIKE '%"  +opcao+"%'";
+			try {
+				System.out.println("Entrei no try do Nome/Pesquisa");
+				Connection con = getConexao();
+				PreparedStatement pst = con.prepareStatement(query);
+				ResultSet rs = pst.executeQuery();
+				while(rs.next()) {
+					int id = rs.getInt(1);
+					String nome = rs.getString(2);
+					String idade = rs.getString(3);
+					String genero = rs.getString(4);
+					String matricula = rs.getString(5);
+					String semestre = rs.getString(6);
+					alunos.add(new Aluno(id, idade, semestre, genero, nome, matricula));
+				}
+				System.out.println("CHEGOU NO ELSE IF");
+				rs.close();
+				pst.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return alunos;
 		
 	}
 

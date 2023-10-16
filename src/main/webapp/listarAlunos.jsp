@@ -26,6 +26,17 @@ Clique <a href="cadastrarAluno.jsp">aqui</a> para cadastrar um novo aluno
 		<h3>Nenhum aluno cadastrado</h3>
 <% } else { %>
 		<h2>Alunos cadastrados</h2>
+		
+	<form action="PesquisarServlet" method="post">
+	Pesquisar por:
+	<select name = "opcao"> 
+		<option value = "nome">Nome</option>
+		<option value = "matricula">Matricula</option>
+	</select>
+	
+	<input type="text" name="valor" required>
+	<input type="submit" value="Pesquisar">
+</form>
 		<table border="1">
 			<tr>
 				<th>Detalhar</th>

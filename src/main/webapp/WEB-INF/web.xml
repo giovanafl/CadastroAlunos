@@ -99,4 +99,14 @@
     <servlet-name>RecuperarServlet</servlet-name>
     <url-pattern>/RecuperarServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PesquisarServlet</display-name>
+    <servlet-name>PesquisarServlet</servlet-name>
+    <servlet-class>com.jp.senac.controller.PesquisarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PesquisarServlet</servlet-name>
+    <url-pattern>/PesquisarServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
